@@ -6,6 +6,23 @@ app.use(express.json());
 
 let candidates = [];
 
+/* 
+
+res.body format for candidates:
+
+{
+  "id": "ae588a6b-4540-5714-bfe2-a5c2a65f547a",
+  "name": "John Coder",
+  "skills": [ "javascript", "es6", "nodejs", "express" ]
+}
+
+query-string format for /candidates/search:
+Skills in the inline csv format can be altered to fit candidate search.
+
+localhost:3000/candidates/search?skills=javascript,es6,nodejs,express
+
+*/
+
 //Adding a posted candidate to candidates array
 app.post("/candidates", function (req, res) {
   const candidate = req.body;
