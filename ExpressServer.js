@@ -38,6 +38,7 @@ app.post("/candidates", function (req, res) {
 });
 
 //Finding candidate with the most skills
+//Currently returns/sends the first candidate with the most skills, but can be altered to return all candidates with relevant skills in an array, or many other data-sets pased on preference.
 app.get("/candidates/search", function (req, res) {
   try {
     let { skills } = req.query;
