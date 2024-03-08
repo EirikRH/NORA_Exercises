@@ -23,33 +23,31 @@ Hvis man trykker på en "expand", fjern visning av subItems i andre menyer */
   }
 
   const menus = menuConfig.map((menu, i) => {
-    const title = menu.title;
+    const title = menu.title.toLowerCase();
     const subItems =
       menu.subItems &&
       menu.subItems.map((subItem, i) => {
         return (
-          <li
-            key={i}
-            data-test-id={`li-${title.toLowerCase()}-${subItem.toLowerCase()}`}
-          >
+          <li key={i} data-test-id={`li-${title}-${subItem.toLowerCase()}`}>
             {subItem}
           </li>
         );
       });
     return (
-      <div data-test-id={`first-level-${menu.title.toLowerCase()}`} key={i}>
+      <div data-test-id={`first-level-${title}`} key={i}>
         {menu.title}
+
         {menu.subItems ? (
           <button
-            data-test-id={`button-${menu.title.toLowerCase()}`}
+            data-test-id={`button-${title}`}
             key={i}
-            onClick={() => handleButtonClick(menu.title)}
+            onClick={() => handleButtonClick(title)}
           >
-            {displayed === menu.title ? "Hide" : "Expand"}
+            {displayed === title ? "Hide" : "Expand"}
           </button>
         ) : null}
-        {displayed === menu.title ? (
-          <ul data-test-id={`ul-${menu.title}`}>{subItems}</ul>
+        {displayed === title ? (
+          <ul data-test-id={`ul-${title}`}>{subItems}</ul>
         ) : null}
       </div>
     );
